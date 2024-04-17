@@ -13,5 +13,5 @@
 ** make sure Eslint extension should be installed
 ** make sure prettier extension should be also installed ( ctr + , <forma on save>)
 
-# step 5
-- 
+# step 5 (setup Express server)
+- npm i express -D @types/express
