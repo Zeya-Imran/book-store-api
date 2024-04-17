@@ -5,7 +5,6 @@ import exp from "constants";
 const connectDb = async () => {
     try {
         
-
         //after connected
         mongoose.connection.on("connected", () => {
             console.log("connected to the database sucessfully");
@@ -15,7 +14,6 @@ const connectDb = async () => {
         mongoose.connection.on("error", (err)=> {
             console.log("Error in connecting to database", err);
         })
-
 
         await mongoose.connect(config.databaseUrl as string);
 

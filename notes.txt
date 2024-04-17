@@ -18,3 +18,7 @@
 
 # step 6 (.env configuration)
 - npm i dotenv  -D @types/dotenv
+
+# step 7 (setup error handling)
+- npm i http-errors -D @types/http-errors
+
