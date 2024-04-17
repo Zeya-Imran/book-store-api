@@ -10,5 +10,8 @@
 # step 4 (setup Eslint)
 - npm init @eslint/config
 
+** make sure Eslint extension should be installed
+** make sure prettier extension should be also installed ( ctr + , <forma on save>)
+
 # step 5
 - 
