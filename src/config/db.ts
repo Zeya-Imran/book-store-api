@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { config } from "./config";
-import exp from "constants";
+
 
 const connectDb = async () => {
     try {
