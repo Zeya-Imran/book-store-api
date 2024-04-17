@@ -7,5 +7,8 @@
 # step 3 (Add Dev script in package.json file)
 - "dev": "nodemon server.ts"
 
-# step 4
+# step 4 (setup Eslint)
+- npm init @eslint/config
+
+# step 5
 - 
