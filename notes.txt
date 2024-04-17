@@ -15,3 +15,6 @@
 
 # step 5 (setup Express server)
 - npm i express -D @types/express
+
+# step 6 (.env configuration)
+- npm i dotenv  -D @types/dotenv
