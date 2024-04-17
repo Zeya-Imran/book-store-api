@@ -1,0 +1,11 @@
+# step 1
+- npm i D typescript ts-node nodemon @types/node
+
+# step 2
+- npx tsc --init
+
+# step 3 (Add Dev script in package.json file)
+- "dev": "nodemon server.ts"
+
+# step 4
+- 
