@@ -24,3 +24,6 @@
 
 # step 8 (install body parser for receiving form data json parse)
 - npm i body-parser -D @types/body-parser
+
+# step (install bcrypt for password hashing)
+- npm i bcrypt  -D @types/bcrypt
