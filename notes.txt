@@ -19,7 +19,7 @@
 # step 6 (.env configuration)
 - npm i dotenv  -D @types/dotenv
 
-# step 7 (setup error handling)
+# step 7 (setup global error handling)
 - npm i http-errors -D @types/http-errors
 
 # step 8 (install body parser for receiving form data json parse)
