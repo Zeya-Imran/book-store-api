@@ -25,5 +25,8 @@
 # step 8 (install body parser for receiving form data json parse)
 - npm i body-parser -D @types/body-parser
 
-# step (install bcrypt for password hashing)
+# step 9 (install bcrypt for password hashing)
 - npm i bcrypt  -D @types/bcrypt
+
+# setup 10 (install jsonwebtoken)
+- npm i jsonwebtoken - D @types/jsonwebtoken

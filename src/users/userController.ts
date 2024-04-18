@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
 import userModel from "./userModel";
 import bcrypt from "bcrypt";
+import { sign } from "jsonwebtoken";
+import { config } from "../config/config";
 const createUser = async (req: Request,res: Response ,next:  NextFunction) => {
     const {name, email, password} = req.body;
 
@@ -24,17 +26,26 @@ const createUser = async (req: Request,res: Response ,next:  NextFunction) => {
     const passwordHasing = await bcrypt.hash(password,10);
 
     //process
-    try {
-        const newUser = await userModel.create({
+    // try {
+        var newUser = await userModel.create({
             name,
             email,
             password: passwordHasing
         });
-        res.json({id:newUser._id});
-    } catch (error) {
-        createHttpError(400,"user already exits, try with another email id");
-    }
+    // } 
+    // catch (error) {
+    //     createHttpError(400,"user already exits, try with another email id");
+    // }
 
+    //Token generation with JWT
+    const accessToken = sign({sub:newUser._id},
+        config.jwtSecret as string, 
+        {
+            expiresIn:'7d',
+            algorithm: "HS256"
+        });
+
+    res.json({"accessToken":accessToken});
     //response
 
 }
