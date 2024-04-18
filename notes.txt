@@ -22,3 +22,5 @@
 # step 7 (setup error handling)
 - npm i http-errors -D @types/http-errors
 
+# step 8 (install body parser for receiving form data json parse)
+- npm i body-parser -D @types/body-parser
