@@ -16,21 +16,27 @@ const createUser = async (req: Request,res: Response ,next:  NextFunction) => {
     const user = await userModel.findOne({email});
     if(user){
         const error = createHttpError(400,"user already exits, try with another email id");
-        next(error);
+        return next(error);
     }
-
+    
 
     //password hashing
-    const passwordHasing = bcrypt.hash(password,10);
-    req.body.password = passwordHasing;
-
-
-
+    const passwordHasing = await bcrypt.hash(password,10);
 
     //process
+    try {
+        const newUser = await userModel.create({
+            name,
+            email,
+            password: passwordHasing
+        });
+        res.json({id:newUser._id});
+    } catch (error) {
+        createHttpError(400,"user already exits, try with another email id");
+    }
 
     //response
-    res.json({message:"from userController"})
+
 }
 
 export { createUser}
