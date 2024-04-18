@@ -30,3 +30,6 @@
 
 # setup 10 (install jsonwebtoken)
 - npm i jsonwebtoken - D @types/jsonwebtoken
+
+# setup 11 (install mullter for file handle)
+- npm i multer -D @types/mullter
