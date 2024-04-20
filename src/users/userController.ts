@@ -69,7 +69,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
       algorithm: "HS256",
     });
 
-    res.status(200).json({ accessToken: accessToken });
+    res.status(200).json({ sucess: "true" });
   } catch (error) {
     return next(createHttpError(500, "Error Login while login"));
   }

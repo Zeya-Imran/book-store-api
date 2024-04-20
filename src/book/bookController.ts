@@ -11,6 +11,7 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
   let uploadPdfFile: any;
   let uploadcoverImage: any;
   let pdfBookFilePath: any;
+
   const files = req.files as { [fieldname: string]: Express.Multer.File[] }; //declarating of multer types of typescript
 
   //extracting the file properties from files
@@ -21,6 +22,7 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
     "../../public/data/uploads",
     fileName
   );
+
   try {
     //uploading coverImage
     uploadcoverImage = await cloudinary.uploader.upload(coverImageFilePath, {
@@ -52,9 +54,11 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
   } catch (error) {
     return next(createHttpError(500, "error while uploading"));
   }
-  //console.log("upload pdf file", uploadPdfFile);
 
   //db call for save the book data
+  //@ts-ignore
+  console.log("userId", req.userId);
+
   try {
     const newBook = await bookModel.create({
       title,
