@@ -175,4 +175,36 @@ const getSingleBook = async (
     return next(createHttpError(500, "error during fetching, try again later"));
   }
 };
-export { createBook, updateBook, getBooks, getSingleBook };
+
+const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
+  const bookId = req.params.bookId;
+
+  const book = await bookModel.findOne({ _id: bookId });
+  if (!book) return next(createHttpError(404, "Book not Found"));
+  //access checking
+  const _req = req as AuthReques;
+  if (book.author.toString() !== _req.userId)
+    return next(createHttpError(403, "You can not update other book"));
+  //delting file and coverImage from cloudinary
+
+  //coverImage
+  try {
+    const coverImageUrlSplits = book.coverImage.split("/");
+    const coverImagePublicId =
+      coverImageUrlSplits.at(-2) +
+      "/" +
+      coverImageUrlSplits.at(-1)?.split(".")[0];
+    await cloudinary.uploader.destroy(coverImagePublicId);
+
+    // file
+    const fileUrlSplits = book.coverImage.split("/");
+    const filesPublicId = fileUrlSplits.at(-2) + "/" + fileUrlSplits.at(-1);
+    await cloudinary.uploader.destroy(filesPublicId);
+
+    const deletedBook = await bookModel.deleteOne({ _id: bookId });
+    res.status(204).json({ deletedBook });
+  } catch (error) {
+    return next(createHttpError(500, "error during the deletion"));
+  }
+};
+export { createBook, updateBook, getBooks, getSingleBook, deleteBook };
