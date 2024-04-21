@@ -163,4 +163,16 @@ const getBooks = async (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({ books });
 };
 
-export { createBook, updateBook, getBooks };
+const getSingleBook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const singleBook = await bookModel.findOne({ _id: req.params.bookId });
+    res.status(200).json({ singleBook });
+  } catch (error) {
+    return next(createHttpError(500, "error during fetching, try again later"));
+  }
+};
+export { createBook, updateBook, getBooks, getSingleBook };

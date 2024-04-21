@@ -38,4 +38,5 @@ bookRouter.put(
 
 bookRouter.get("/", getBooks);
 
+bookRouter.get("/:bookId", getSingleBook);
 export default bookRouter;
