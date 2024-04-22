@@ -152,6 +152,20 @@ const updateBook = async (req: Request, res: Response, next: NextFunction) => {
         file: files.file ? uploadPdfFile.secure_url : book.file,
       }
     );
+    if (files.coverImage) {
+      const coverImageUrlSplits = book.coverImage.split("/");
+      const coverImagePublicId =
+        coverImageUrlSplits.at(-2) +
+        "/" +
+        coverImageUrlSplits.at(-1)?.split(".")[0];
+      await cloudinary.uploader.destroy(coverImagePublicId);
+    } else if (files.file) {
+      // file
+      const fileUrlSplits = book.coverImage.split("/");
+      const filesPublicId = fileUrlSplits.at(-2) + "/" + fileUrlSplits.at(-1);
+      await cloudinary.uploader.destroy(filesPublicId);
+    }
+
     res.status(201).json({ id: updatedBook });
   } catch (error) {
     return createHttpError(500, "error in updating the data");
